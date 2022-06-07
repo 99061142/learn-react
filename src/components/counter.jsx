@@ -3,52 +3,49 @@ import React, { Component } from 'react';
 export default class Counter extends Component {
     constructor(props) {
         super(props);
+        this.standardColor = "black";
         this.state = {
             count: 0,
-        };
 
-        this.countStyles = {
-            fontSize: "30px",
-            color: this.countText(),
+            countStyles: {
+                fontSize: "50px",
+                color: this.standardColor,
+            },
         };
     }
 
     increment() {
-        let count = this.state.count;
         let newCount = this.state.count + 1;
-
-        this.setState({
-            count: newCount
-        });
-
-        this.countText(count, newCount);
+        this.updateCountState(newCount);
     }
 
     decrement() {
-        let count = this.state.count;
         let newCount = this.state.count - 1;
-
-        this.setState({
-            count: newCount
-        });
-
-        this.countText(count, newCount);
+        this.updateCountState(newCount);
     }
 
-    countText(count, newCount) {
-        let color;
+    updateCountState(newCount) {
+        this.setState(previousState => ({
+            count: newCount,
 
-        if(count === 0){ color = (newCount === 1) ? "green" : "red"; } // If the count before the change was equal to 0
-        else if(newCount === 0){ color = "black"; } // If the count after the change is equal to 0
-
-        if(count === 0 || newCount === 0){ this.countStyles = {...this.countStyles, color}; } // Change the color of the count
+            countStyles: {
+                ...previousState.countStyles,
+                color: this.newCountColor(newCount),
+            },
+        }));
     }
     
+    newCountColor(newCount) {
+        if(!this.state.count) { return (newCount === 1) ? "darkGreen" : "red"; } // If the count before the change is equal to 0
+        else if(!newCount) { return this.standardColor; } // If the count after the change is equal to 0
+        else { return this.state.countStyles.color; } // If the color don't need to get changed
+    }
+
     render() {
         return (
             <div>
                 <button className="btn btn-danger" onClick={this.decrement.bind(this)}>-</button>
-                <span style={this.countStyles}>{this.state.count}</span>
+                <span style={this.state.countStyles}>{this.state.count}</span>
                 <button className="btn btn-success" onClick={this.increment.bind(this)}>+</button>
             </div>
         );
