@@ -30,12 +30,12 @@ export default class Counter extends Component {
 
             countStyles: {
                 ...previousState.countStyles,
-                color: this.newCountColor(newCount),
+                color: this.countColor(newCount),
             },
         }));
     }
     
-    newCountColor(newCount) {
+    countColor(newCount) {
         if(!this.state.count) { return (newCount === 1) ? "darkGreen" : "red"; } // If the count before the change is equal to 0
         else if(!newCount) { return this.standardColor; } // If the count after the change is equal to 0
         else { return this.state.countStyles.color; } // If the color don't need to get changed
@@ -43,7 +43,7 @@ export default class Counter extends Component {
 
     render() {
         return (
-            <div>
+            <div className="counter">
                 <button className="btn btn-danger" onClick={this.decrement.bind(this)}>-</button>
                 <span style={this.state.countStyles}>{this.state.count}</span>
                 <button className="btn btn-success" onClick={this.increment.bind(this)}>+</button>
