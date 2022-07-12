@@ -1,12 +1,15 @@
-import './App.css';
+import Header from './components/Header';
+import Counter from './components/Counter';
+import Footer from './components/Footer';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-      </header>
-    </div>
-  );
+const App = () => {
+    return (
+        <div className="container">
+            <Header/>
+            <Counter />
+            <Footer />
+        </div>
+    );
 }
 
 export default App;
