@@ -1,6 +1,6 @@
-import TicTacToeCell from './TicTacToeCell';
+import Cell from './Cell';
 
-export default class TicTacToeBoard extends TicTacToeCell {
+export default class Board extends Cell {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,7 +27,7 @@ export default class TicTacToeBoard extends TicTacToeCell {
                         <div className="row" key={rowIndex}>
                             {row.map((cell, cellIndex) => {
                                 return (
-                                    <TicTacToeCell
+                                    <Cell
                                         key={cellIndex}
                                         value={cell}
                                     />
