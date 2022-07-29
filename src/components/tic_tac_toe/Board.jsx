@@ -30,6 +30,7 @@ export default class Board extends Cell {
                                     <Cell
                                         key={cellIndex}
                                         value={cell}
+                                        onClick={() => this.cellClicked(rowIndex, cellIndex)} 
                                     />
                                 );
                             })}
@@ -39,5 +40,33 @@ export default class Board extends Cell {
             </div>
         </div>
         );
+    }
+
+    cellClicked(rowIndex, cellIndex) {
+        if(this.state.gameOver) { return; } // Game over
+        if(this.state.board[rowIndex][cellIndex]) { return; } // Cell isn't empty
+        
+        this.setCell(rowIndex, cellIndex); // Add turn to cell
+        this.checkForWinner();
+        this.changeTurn();
+    }
+
+    setCell(rowIndex, cellIndex) {
+        let newBoard = [...this.state.board] 
+        newBoard[rowIndex][cellIndex] = this.state.turn;
+        
+        this.setState({
+            board: newBoard,
+        });
+    }
+
+    checkForWinner() {
+        
+    }
+
+    changeTurn() {
+        this.setState({
+            turn: this.state.turn === "X" ? "O" : "X",
+        });
     }
 }
