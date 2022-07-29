@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class TicTacToeCell extends Component {    
+export default class Cell extends Component {    
     render() {
     const styling = {
         border: "1px solid black",
