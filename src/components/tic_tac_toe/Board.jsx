@@ -19,7 +19,7 @@ export default class Board extends Cell {
         return (
         <div className="tic-tac-toe">
             <div className="status">
-                {this.state.winner ? `${this.state.winner} wins!` : `Next player: ${this.state.turn}`}
+                {this.state.winner ? `${this.state.winner} wins!` : (this.state.gameOver) ? 'Nobody won' : `Next player: ${this.state.turn}`}
             </div>           
             <div className="board">
                 {this.state.board.map((row, rowIndex) => {
