@@ -1,12 +1,9 @@
-import Header from './components/Header';
-import Counter from './components/Counter';
-import Footer from './components/Footer';
-import TicTacToeBoard from './components/TicTacToeBoard';
+import Board from './components/tic_tac_toe/Board';
 
 const App = () => {
     return (
         <div className="container">
-            <TicTacToeBoard />
+            <Board />
         </div>
     );
 }
